@@ -8,7 +8,7 @@ import MyBookings from "./pages/MyBookings";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/layout/Navbar";
 import Signup from "./pages/Signup";
-import Login from "./pages/login";
+import Login from "./pages/Login";
 import { useUser } from '@clerk/clerk-react';
 
 const queryClient = new QueryClient();

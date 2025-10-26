@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { UserButton } from '@clerk/clerk-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Logo from '/Logo.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,12 +21,24 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
+          {/* <Link to="/" className="flex items-center space-x-2">
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-lg">S</span>
             </div>
             <span className="text-xl font-bold text-foreground">SeatSense</span>
-          </Link>
+          </Link> */}
+
+          <a href="/">
+          <div className="w-50 h-50 rounded-xl flex items-center justify-center">
+            {/* <span className="text-primary-foreground font-bold text-lg">S</span> */}
+            <img src={Logo} alt="SeatSense Logo" width={50} height={50} />
+            <span className="text-xl font-bold text-foreground pl-3">SeatSense</span>
+          </div>
+          
+          {/* <span className="text-2xl font-bold bg-gradient-to-r from-colour1 to-colour2 bg-clip-text text-transparent">
+            SeatSense
+          </span> */}
+          </a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-3">
