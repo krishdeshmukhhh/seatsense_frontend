@@ -73,11 +73,11 @@ const BookingModal = ({ room, isOpen, onClose }: BookingModalProps) => {
       {isOpen && (
         <>
           {/* Debug badge so we can visually confirm the portal is rendered */}
-          {process.env.NODE_ENV !== 'production' && (
+          {/* {process.env.NODE_ENV !== 'production' && (
             <div className="fixed top-4 right-4 z-[9999] bg-red-600 text-white px-3 py-1 rounded-md shadow-md">
               BookingModal mounted
             </div>
-          )}
+          )} */}
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}

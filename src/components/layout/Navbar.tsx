@@ -21,12 +21,6 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          {/* <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">S</span>
-            </div>
-            <span className="text-xl font-bold text-foreground">SeatSense</span>
-          </Link> */}
 
           <a href="/">
           <div className="w-50 h-50 rounded-xl flex items-center justify-center">
@@ -35,9 +29,6 @@ const Navbar = () => {
             <span className="text-xl font-bold text-foreground pl-3">SeatSense</span>
           </div>
           
-          {/* <span className="text-2xl font-bold bg-gradient-to-r from-colour1 to-colour2 bg-clip-text text-transparent">
-            SeatSense
-          </span> */}
           </a>
 
           {/* Desktop Navigation */}

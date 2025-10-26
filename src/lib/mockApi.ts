@@ -4,7 +4,7 @@ import { Room, TimeSlot, Booking, User } from '@/types/booking';
 const rooms: Room[] = [
   {
     id: '1',
-    name: 'Thompson Study Room A',
+    name: 'Test Study Room',
     roomNumber: '301A',
     capacity: 6,
     status: 'empty',
@@ -58,7 +58,7 @@ const mockUser: User = {
   email: 'buckeye.1@osu.edu',
 };
 
-let mockBookings: Booking[] = [
+const mockBookings: Booking[] = [
   {
     id: 'booking-1',
     roomId: '2',
@@ -75,11 +75,37 @@ let mockBookings: Booking[] = [
 export const mockApi = {
   getRooms: async (): Promise<Room[]> => {
     await new Promise(resolve => setTimeout(resolve, 300));
-    // Randomly update statuses to simulate real-time changes
-    return rooms.map(room => ({
-      ...room,
-      lastUpdated: new Date().toISOString(),
-    }));
+    // Compute current occupancy based on bookings for the same date/time
+    const today = new Date().toISOString().split('T')[0];
+    const now = new Date();
+
+    return rooms.map(room => {
+      // Check if any booking for this room is active right now
+      const isCurrentlyOccupied = mockBookings.some(booking => {
+        if (booking.roomId !== room.id) return false;
+        if (booking.status === 'cancelled') return false;
+        if (booking.date !== today) return false;
+
+        // Parse start/end times (HH:MM)
+        const [sh, sm] = booking.startTime.split(':').map(Number);
+        const [eh, em] = booking.endTime.split(':').map(Number);
+
+        const start = new Date();
+        start.setHours(sh, sm, 0, 0);
+        const end = new Date();
+        end.setHours(eh, em, 0, 0);
+
+        return now >= start && now < end;
+      });
+
+      const computedStatus: Room['status'] = isCurrentlyOccupied ? 'occupied' : room.status;
+
+      return {
+        ...room,
+        status: computedStatus,
+        lastUpdated: new Date().toISOString(),
+      };
+    });
   },
 
   getRoom: async (id: string): Promise<Room | undefined> => {
